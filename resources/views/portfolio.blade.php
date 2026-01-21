@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('Layout')
 
-    <title>{{ $nama }} - Portfolio</title>
+@section('title', 'Portfolio')
 
-    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @endif
-
+@section('styles')
     <style>
         :root { color-scheme: light dark; }
         body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif; }
@@ -32,50 +25,80 @@
         h2 { font-size: 18px; margin: 0 0 10px; }
         p { margin: 0; line-height: 1.6; }
         .section { margin-top: 18px; }
+        
+        .profile-container {
+            max-width: none;
+            margin: 0;
+            padding: 0;
+        }
+        .profile-container .profile-header {
+            margin-bottom: 20px;
+        }
+        .profile-container .profile-avatar {
+            width: 120px;
+            height: 120px;
+        }
+        .profile-container .profile-header h1 {
+            font-size: 28px;
+            margin: 0 0 6px;
+        }
+        .profile-container .profile-info {
+            background: transparent;
+            padding: 0;
+            margin-bottom: 15px;
+        }
+        .profile-container .profile-section h3 {
+            font-size: 18px;
+            border-bottom: 1px solid rgba(0,0,0,.12);
+            margin: 15px 0 10px;
+        }
+        .profile-container .profile-section ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .profile-container .profile-section ul li {
+            margin: 5px 0;
+        }
     </style>
-</head>
-<body>
-<div class="wrap">
-    <div class="card">
-        <h1>{{ $nama }}</h1>
-        <p class="muted">{{ $profesi }}</p>
-        <div class="section">
-            <p>{{ $deskripsi }}</p>
-        </div>
+@endsection
 
-        <div class="section">
-            <h2>Skills</h2>
-            <ul class="chips">
-                @foreach (($skills ?? []) as $skill)
-                    <li class="chip">{{ $skill }}</li>
-                @endforeach
-            </ul>
+@section('content')
+    <div class="wrap">
+        <div class="card">
+            <x-profile 
+                :nama="$nama ?? 'Faris'"
+                :profesi="$profesi ?? 'Web Developer & Content Creator'"
+                :deskripsi="$deskripsi ?? ''"
+                :skills="$skills ?? []"
+                :email="$email ?? 'Unknown@gmail.com'"
+                :github="$github ?? 'github.com/Unknown'"
+                :instagram="$instagram ?? 'instagram.com/Unknown'"
+            />
         </div>
 
         @if (!empty($namaList))
             <div class="section">
-                <h2>Jabatan
-                </h2>
-                <ul class="chips">
-                    @foreach ($namaList as $n)
-                        <li class="chip">{{ $n }}</li>
-                    @endforeach
-                </ul>
+                <div class="card">
+                    <h2>Jabatan</h2>
+                    <ul class="chips">
+                        @foreach ($namaList as $n)
+                            <li class="chip">{{ $n }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         @endif
-    </div>
 
-    <div class="section"></div>
+        <div class="section"></div>
 
-    <div class="grid">
-        @foreach (($portfolio ?? []) as $item)
-            <div class="card">
-                <h2>{{ $item['judul'] ?? 'Project' }}</h2>
-                <p class="muted">{{ $item['deskripsi'] ?? '' }}</p>
-                <a class="btn" href="/LandingPage">Project</a>
-            </div>
-        @endforeach
+        <div class="grid">
+            @foreach (($portfolio ?? []) as $item)
+                <div class="card">
+                    <h2>{{ $item['judul'] ?? 'Project' }}</h2>
+                    <p class="muted">{{ $item['deskripsi'] ?? '' }}</p>
+                    <a class="btn" href="/LandingPage">Project</a>
+                </div>
+            @endforeach
+        </div>
     </div>
-</div>
-</body>
-</html>
+@endsection
