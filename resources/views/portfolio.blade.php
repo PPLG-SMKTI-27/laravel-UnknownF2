@@ -1,10 +1,11 @@
+
 @extends('Layout')
 
 @section('title', 'Portfolio')
 
 @section('styles')
     <style>
-        :root { color-scheme: light dark; }
+        :root { color-scheme: lig   ht dark; }
         body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif; }
         .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px; }
         .card { background: rgba(255,255,255,.9); border: 1px solid rgba(0,0,0,.08); border-radius: 14px; padding: 20px; }
@@ -101,4 +102,16 @@
             @endforeach
         </div>
     </div>
-@endsection
+
+  
+        <div class="section">
+            <div class="card">
+                <h2>Daftar Siswa</h2>
+                <ul class="chips">
+                    @foreach ($siswa ?? [] as $s)
+                        <li class="chip">{{ $s['nama'] ?? $s }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endsection

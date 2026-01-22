@@ -12,3 +12,7 @@ Route::get('/LandingPage', function () {
 use App\Http\Controllers\projectController;
 
 Route::get('/project', [projectController::class, 'index']);
+
+use App\Http\Controllers\ComponentController;
+Route::get('/components/siswa', [ComponentController::class, 'index']);
+
