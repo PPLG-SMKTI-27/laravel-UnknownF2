@@ -5,8 +5,29 @@
 
 @section('styles')
     <style>
-        :root { color-scheme: lig   ht dark; }
+        :root { color-scheme: light dark; }
         body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif; }
+        
+        .logout-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+        
         .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px; }
         .card { background: rgba(255,255,255,.9); border: 1px solid rgba(0,0,0,.08); border-radius: 14px; padding: 20px; }
         @media (prefers-color-scheme: dark) {
@@ -64,6 +85,8 @@
 @endsection
 
 @section('content')
+    <a href="{{ route('logout') }}" class="logout-btn">Logout</a>
+    
     <div class="wrap">
         <div class="card">
             <x-profile 

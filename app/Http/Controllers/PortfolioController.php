@@ -10,7 +10,7 @@ class PortfolioController extends Controller
     public function index()
     {
         $data = [
-            'nama' => 'Faris Fathuzcsdfdfssfrrahman',
+            'nama' => 'Faris Fathurrahman',
             'profesi' => 'Website Developer/Cybersecurity/Doktor',
             'deskripsi' => 'Perkenalkan, Nama saya Faris Fathurrahman Saya adalah web developer yang berfokus untuk pengembangan website dan Cybersecruity.',
             'namaList' => projectController::namaList(),

@@ -1,6 +1,6 @@
 <div class="profile-container">
     <section class="profile-header">
-        <img src="https://via.placeholder.com/150" alt="Profile Avatar" class="profile-avatar">
+        <img src="Faris.jpeg" alt="Profile Avatar" class="profile-avatar">
         <h1>{{ $nama ?? 'Faris' }}</h1>
         <p class="subtitle">{{ $profesi ?? 'Web Developer & Content Creator' }}</p>
     </section>

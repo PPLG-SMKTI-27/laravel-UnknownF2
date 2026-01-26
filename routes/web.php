@@ -1,5 +1,10 @@
 <?php
+
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ComponentController;
+use App\Http\Controllers\FormLogin;
 
 Route::get('/', [PortfolioController::class, 'index']);
 
@@ -9,10 +14,14 @@ Route::get('/LandingPage', function () {
     ]);
 });
 
-use App\Http\Controllers\projectController;
+Route::get('/project', [ProjectController::class, 'index']);
 
-Route::get('/project', [projectController::class, 'index']);
-
-use App\Http\Controllers\ComponentController;
 Route::get('/components/siswa', [ComponentController::class, 'index']);
 
+Route::get('/login', [FormLogin::class, 'index'])->name('login');
+
+Route::post('/login', [FormLogin::class, 'prosesLogin'])->name('login.process');
+
+Route::get('/logout', [FormLogin::class, 'logout'])->name('logout');
+
+Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
