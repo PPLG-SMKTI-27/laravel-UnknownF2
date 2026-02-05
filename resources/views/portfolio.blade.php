@@ -27,6 +27,22 @@
         .logout-btn:hover {
             background-color: #c0392b;
         }
+        .debug-btn {
+            position: fixed;
+            top: 20px;
+            right: 140px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        .debug-btn:hover { background-color: #2574a9; }
         
         .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px; }
         .card { background: rgba(255,255,255,.9); border: 1px solid rgba(0,0,0,.08); border-radius: 14px; padding: 20px; }
@@ -115,15 +131,23 @@
 
         <div class="section"></div>
 
-        <div class="grid">
-            @foreach (($portfolio ?? []) as $item)
+        @if (empty($portfolio ?? []))
+            <div class="section">
                 <div class="card">
-                    <h2>{{ $item['judul'] ?? 'Project' }}</h2>
-                    <p class="muted">{{ $item['deskripsi'] ?? '' }}</p>
-                    <a class="btn" href="/LandingPage">Project</a>
+                    <p>Tidak ada data projects.</p>
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @else
+            <div class="grid">
+                @foreach ($portfolio as $item)
+                    <div class="card">
+                        <h2>{{ $item['judul'] ?? 'Project' }}</h2>
+                        <p class="muted">{{ $item['deskripsi'] ?? '' }}</p>
+                        <a class="btn" href="/LandingPage">Project</a>
+                    </div>
+                @endforeach
+            </div>
+        @endif
     </div>
 
   
@@ -137,4 +161,4 @@
                 </ul>
             </div>
         </div>
-    @endsection
+        @endsection

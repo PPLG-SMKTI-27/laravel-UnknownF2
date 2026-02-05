@@ -25,3 +25,8 @@ Route::post('/login', [FormLogin::class, 'prosesLogin'])->name('login.process');
 Route::get('/logout', [FormLogin::class, 'logout'])->name('logout');
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
+
+Route::get('/projects', [App\Http\Controllers\ProjectController::class, 'index']);
+
+Route::get('/projects/debug', [App\Http\Controllers\ProjectController::class, 'debug'])->name('projects.debug');
+Route::get('/projects/json', [App\Http\Controllers\ProjectController::class, 'json'])->name('projects.json');
